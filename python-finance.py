@@ -13,4 +13,7 @@ end = dt.date.today()
 
 # data frame
 df = web.DataReader('TSLA', 'yahoo', start, end)
+
+df.to_csv('tsla.csv')
+
 print(df.tail())
