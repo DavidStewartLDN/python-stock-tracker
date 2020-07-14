@@ -9,8 +9,8 @@ style.use('ggplot')
 
 # start and end date of information
 start = dt.datetime(2000,1,1)
-end = dt.datetime(2016,12,31)
+end = dt.date.today()
 
 # data frame
 df = web.DataReader('TSLA', 'yahoo', start, end)
-print(df.head())
+print(df.tail())
