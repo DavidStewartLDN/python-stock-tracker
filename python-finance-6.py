@@ -33,7 +33,7 @@ def get_data_from_yahoo(reload_sp500=False):
   if reload_sp500:
     tickers = save_sp500_tickers()
   else:
-    # wb = write bites and rb = read bites - ahhh!
+    # wb = write bytes and rb = read bytes - ahhh!
     with open("sp500tickers.pickle", "rb") as f:
       tickers = pickle.load(f)
 
