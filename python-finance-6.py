@@ -17,11 +17,15 @@ def save_sp500_tickers():
   tickers = []
   for row in table.findAll('tr')[1:]:
     ticker = row.find('td').text.strip()
+    if "." in ticker:
+      ticker = ticker.replace('.', '-')
+      print('ticker replaced to {}'.format(ticker))
     tickers.append(ticker)
 
   with open("sp500tickers.pickle", "wb") as f:
     pickle.dump(tickers, f)
 
+  print("Collected ticker data")
   return tickers
 
 def get_data_from_yahoo(reload_sp500=False):
@@ -49,15 +53,15 @@ def get_data_from_yahoo(reload_sp500=False):
     else:
       print('Already have {}'.format(ticker))
 
-
+save_sp500_tickers()
 get_data_from_yahoo()
 
-def get_sp500_ticker_data():
-  tickers = save_sp500_tickers()
+# def get_sp500_ticker_data():
+#   tickers = save_sp500_tickers()
 
-  for ticker in tickers:
-    print(ticker)
-    df = web.DataReader(ticker, 'yahoo', start, end)
-    print(df.tail())
+#   for ticker in tickers:
+#     print(ticker)
+#     df = web.DataReader(ticker, 'yahoo', start, end)
+#     print(df.tail())
 
-get_sp500_ticker_data()
+# get_sp500_ticker_data()
