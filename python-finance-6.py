@@ -55,13 +55,3 @@ def get_data_from_yahoo(reload_sp500=False):
 
 save_sp500_tickers()
 get_data_from_yahoo()
-
-# def get_sp500_ticker_data():
-#   tickers = save_sp500_tickers()
-
-#   for ticker in tickers:
-#     print(ticker)
-#     df = web.DataReader(ticker, 'yahoo', start, end)
-#     print(df.tail())
-
-# get_sp500_ticker_data()
