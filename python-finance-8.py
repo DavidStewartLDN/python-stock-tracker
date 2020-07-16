@@ -84,7 +84,7 @@ def compile_data():
   print(main_df.head())
   main_df.to_csv('sp500_joined_closes.csv')
 
-def visualize_data(type):
+def visualize_data(type='percent'):
   df = pd.read_csv('sp500_joined_closes.csv')
   # df['AAPL'].plot()
   # plt.show()
@@ -126,4 +126,5 @@ def visualize_data(type):
   plt.tight_layout()
   plt.show()
 
-visualize_data('percent')
+# sentdex suggested to use 'price' but percent change seems like better default
+visualize_data()
