@@ -126,4 +126,4 @@ def visualize_data(type):
   plt.tight_layout()
   plt.show()
 
-visualize_data('price')
+visualize_data('percent')
