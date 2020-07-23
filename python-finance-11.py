@@ -4,9 +4,10 @@ import pandas as pd
 import pickle
 from collections import Counter
 
+hm_days = 5
+
 # each model will per company but compared against all
 def process_data_for_labels(ticker):
-  hm_days = 5
   df = pd.read_csv('sp500_joined_closes.csv', index_col=0)
   tickers = df.columns.values.tolist()
   df.fillna(0, inplace=True)
@@ -38,14 +39,8 @@ def buy_sell_hold(*args):
 
 def extract_featuresets(ticker):
   tickers, df = process_data_for_labels(ticker)
-
-  df['{}_target'.format(ticker)] = list(map( buy_sell_hold,
-                                              df['{}_1d'.format(ticker)],
-                                              df['{}_2d'.format(ticker)],
-                                              df['{}_3d'.format(ticker)],
-                                              df['{}_4d'.format(ticker)],
-                                              df['{}_5d'.format(ticker)]
-                                              ))
+  df['{}_target'.format(ticker)] = list(map(buy_sell_hold,
+                                    *[df['{}_{}d'.format(ticker, i)]for i in range(1, hm_days+1)]))
 
   # This gives us the distributions 
   vals = df['{}_target'.format(ticker)].values.tolist()
